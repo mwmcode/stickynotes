@@ -1,0 +1,53 @@
+{
+  "name": "stickynotestab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "keywords": [],
+  "author": "mustafa",
+  "license": "ISC",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --hide-modules --progress",
+    "dev:build": "cross-env NODE_ENV=development webpack -d",
+    "dev": "webpack-dev-server --colors --inline --progress",
+    "watch": "cross-env NODE_ENV=development webpack --watch",
+    "test": "jest",
+    "test:update": "jest -u",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.5.0",
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^22.1.4",
+    "jest-serializer-enzyme": "^1.0.0",
+    "prettier": "^1.10.2",
+    "react-test-renderer": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "uuid": "^3.2.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.0"
+  }
+}

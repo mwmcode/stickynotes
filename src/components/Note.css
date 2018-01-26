@@ -1,0 +1,42 @@
+.note-box {
+  float: left;
+  width: 330px;
+  height: 210px;
+  margin: 0.2em;
+  transform: rotate(2deg);
+  box-shadow:5px 10px 15px 0 rgba(0,0,0,.2);
+}
+.note-box:hover > button {
+  opacity: 1;
+}
+
+.note-textarea {
+  width: 100%;
+  resize: none;
+  height: 100%;
+  margin: 2px 0;
+  font-size: 15px;
+  overflow: scroll;
+  white-space: pre-line;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  background-color: #FDD835;
+  border: none;
+}
+.note-textarea:focus {
+  outline: none !important;
+}
+
+.remove-note-btn {
+  top: -11.5%;
+  right: -92%;
+  position: relative;
+  background: #f44336;
+  border-radius: 3px;
+  color: whitesmoke;
+  cursor: pointer;
+  opacity: 0;
+}
+.remove-note-btn:hover {
+  background: #e53935;
+}

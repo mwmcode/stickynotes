@@ -1,0 +1,8 @@
+body,
+html,
+div.board,
+div#stick-notes-app {
+    height: 100%;
+    overflow: scroll;
+    background: #e8e6e6;
+}

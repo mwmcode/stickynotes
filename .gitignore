@@ -1,0 +1,15 @@
+.env
+public/bundle.js
+node_modules/
+.eslintcache
+coverage/
+.nyc_output
+.DS_Store
+public/public/*.js
+public/public/*.map
+*.map
+.sass-cache/
+*.iml
+src/__tests__/__snapshots__/
+.vscode/
+.idea/

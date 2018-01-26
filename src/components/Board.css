@@ -1,0 +1,8 @@
+.notes-board {
+  margin: .5em;
+}
+.add-note-btn {
+  top: 5px;
+  right: 5px;
+  position: absolute;
+}
