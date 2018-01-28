@@ -41,6 +41,9 @@
     ],
     "react/forbid-prop-types": 0,
     "no-param-reassign": "warn",
-    "jsx-a11y/no-autofocus": 0
+    "jsx-a11y/no-autofocus": 0,
+    "no-void": 0,
+    "react/sort-comp": 0,
+    "react/no-did-mount-set-state" : 0
   }
 }

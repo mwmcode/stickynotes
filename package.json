@@ -16,9 +16,11 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "just-extend": "^1.1.27",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-draggable": "^3.0.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

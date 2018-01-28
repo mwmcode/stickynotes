@@ -1,6 +1,6 @@
 .note-box {
   float: left;
-  width: 330px;
+  width: 310px;
   height: 210px;
   margin: 0.2em;
   transform: rotate(2deg);
@@ -22,6 +22,8 @@
   box-sizing: border-box;
   background-color: #FDD835;
   border: none;
+  line-height: 1.5em;
+  cursor: move;
 }
 .note-textarea:focus {
   outline: none !important;
@@ -29,7 +31,6 @@
 
 .remove-note-btn {
   top: -11.5%;
-  right: -92%;
   position: relative;
   background: #f44336;
   border-radius: 3px;

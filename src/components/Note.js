@@ -1,57 +1,82 @@
 import React from 'react';
+import Draggable from 'react-draggable';
 import { shape, number, string, func } from 'prop-types';
 import './Note.css';
 
 
 export default class Note extends React.Component {
 
-	componentWillMount() {
-		// this.style = {
-		// 	right: this.randomBetween(0, window.innerWidth - 150) + 'px',
-		// 	top: this.randomBetween(0, window.innerHeight - 150) + 'px',
-		// 	transform: 'rotate('+ this.randomBetween(-15, 15) +'deg)',
-		// };
-	}
+	// componentWillMount() {
+	// 	this.style = {
+	// 		right: this.randomBetween(0, window.innerWidth - 150) + 'px',
+	// 		top: this.randomBetween(0, window.innerHeight - 150) + 'px',
+	// 		transform: 'rotate('+ this.randomBetween(-15, 15) +'deg)',
+	// 	};
+	// }
+	handleStop = (e, {x, y}) => {
+		const { note, updateFn } = this.props;
+
+		const prop = {
+			defaultPosition: {x, y}
+		};
+
+		updateFn(note.id, prop);
+  };
+
+	onBlur = () => {
+		const { note, updateFn } = this.props;
+
+		note.body = this.txt.value;
+
+		updateFn(note);
+	};
+
 
 	render() {
-		const { note, onSave, onRemove } = this.props;
+		const { note, removeFn } = this.props;
 
 		return (
-			<div
-				className='note-box'
-				style={ this.style }
+			<Draggable
+				onStop={this.handleStop}
+				defaultPosition={note.defaultPosition}
 			>
-				<textarea
-					autoFocus
-					className='note-textarea'
-					defaultValue={note.body}
-					ref={txt => {this.txt = txt}}
-					onBlur={()=>onSave(this.txt.value, note.id)}
-				/>
-				<button
-					title='remove'
-					className='remove-note-btn'
-					onClick={() => onRemove(note.id)}
+				<div
+					style={note.style}
+					className='note-box'
 				>
-					&#8212;
-				</button>
-			</div>
+					<textarea
+						autoFocus
+						onBlur={this.onBlur}
+						className='note-textarea'
+						defaultValue={note.body}
+						ref={txt => {this.txt = txt}}
+					/>
+					<button
+						title='remove'
+						className='remove-note-btn'
+						onClick={() => removeFn(note.id)}
+					>
+						&#8212;
+					</button>
+				</div>
+			</Draggable>
     );
 	}
 }
 
 Note.propTypes = {
-	onSave: func,
-	onRemove: func,
+	updateFn: func,
+	removeFn: func,
 	note: shape({
 		id: number,
-		body: string
+		body: string,
+		style: shape({})
 	})
 };
 
 Note.defaultProps = {
-	onSave: () => {},
-	onRemove: () => {},
+	updateFn: () => {},
+	removeFn: () => {},
 	note: {
 		id: 0,
 		body: ''
