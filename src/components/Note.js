@@ -32,7 +32,7 @@ export default class Note extends React.Component {
 
 	onDragStop = () => {
 		const { x, y } = this.noteRef.current.getBoundingClientRect();
-		const marginNumVal = Number.parseInt(DEFAULT_NOTE_STYLE.margin, 10); // cast to int and get rid of 'px'
+		const marginNumVal = Number.parseInt(DEFAULT_NOTE_STYLE.margin, 10); // cast to int/get rid of 'px'
 
 		const newNote = extend(
 			this.props.note, {

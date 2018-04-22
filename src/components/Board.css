@@ -33,3 +33,28 @@
 .settings-btn:hover {
   background: #90a4aed4;
 }
+
+/* CSS Transition */
+.note-enter {
+  opacity: 0.01;
+}
+.note-enter.note-enter-active {
+  opacity: 1;
+  transition: opacity 650ms ease-in;
+}
+
+.note-leave {
+  opacity: 1;
+}
+.note-leave.note-leave-active {
+  opacity: 0.01;
+  transition: opacity 750ms ease-out;
+}
+
+.note-appear {
+  opacity: 0.01;
+}
+.note-appear.note-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Board.css';
 import Note from './Note';
 import * as storage from '../storage_api';
@@ -27,10 +28,18 @@ export default class NotesBoard extends React.Component {
 		console.error(err);
 		console.info(info);
     this.setState({ catchedError: true });
-  }
+	}
 
-	// ctr + enter
+	reSortNotes = () => {
+		const removeFixedStyle = note => ({...note, style: {}});
+		const updatedNotes = this.state.notes.map(removeFixedStyle);
+		this.saveNotes(updatedNotes);
+	}
+
+	getRandomNum = (min=0, max=900) => Math.floor(Math.random() * (max - min) + min);
+
 	keydownHandler = evt => {
+		// ctr + enter
 		if ( evt.keyCode === 13 && evt.ctrlKey ) {
 			this.addNewNote();
 		}
@@ -38,11 +47,16 @@ export default class NotesBoard extends React.Component {
 
 	addNewNote = () => {
 		const datetimestamp = Date.now();
+
 		const note = {
 			id: datetimestamp,
 			body: '',
-			style: {},
-			createdAt: new Date(datetimestamp).toLocaleString()
+			style: {
+				position: 'fixed',
+				top: `${this.getRandomNum(10, 600)}px`,
+				left: `${this.getRandomNum(10, 1000)}px`,
+			},
+			createdAt: new Date(datetimestamp).toLocaleString(),
 		};
 
 		this.saveNotes([...this.state.notes, note]);
@@ -68,25 +82,32 @@ export default class NotesBoard extends React.Component {
 	};
 
 	render() {
-		const {
-			notes,
-			catchedError,
-		} = this.state;
 
-		if ( catchedError ) {
+		const noteBoxes = this.state.notes.map( note =>
+			<Note
+				key={note.id}
+				note={note}
+				updateFn={this.updateNote}
+				removeFn={this.removeNote}
+			/>
+		);
+
+		if ( this.state.catchedError ) {
 			return <span>Ops! Something went wrong :(</span>
 		}
 
 		return (
 			<div className='notes-board' >
-				{notes.map( note =>
-					<Note
-						key={note.id}
-						note={note}
-						updateFn={this.updateNote}
-						removeFn={this.removeNote}
-					/>
-				)}
+				<ReactCSSTransitionGroup
+					transitionName='note'
+					transitionAppear
+					transitionEnter
+      		transitionAppearTimeout={500}
+					transitionEnterTimeout={500}
+					transitionLeaveTimeout={300}
+				>
+					{noteBoxes}
+				</ReactCSSTransitionGroup>
 
 				<button
 					title='new note'
@@ -99,6 +120,7 @@ export default class NotesBoard extends React.Component {
 				<button
 					title='settings'
 					className='settings-btn'
+					onClick={this.reSortNotes}
 				>
 					&#402;
 				</button>
