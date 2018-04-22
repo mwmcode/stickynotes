@@ -2,37 +2,34 @@
   float: left;
   width: 310px;
   height: 210px;
-  margin: 0.2em;
+  margin: 4px;
+  background: #FDD835;
   transform: rotate(2deg);
   box-shadow:5px 10px 15px 0 rgba(0,0,0,.2);
+  border-bottom-left-radius: 5px;
 }
-.note-box:hover > button {
-  opacity: 1;
-}
-
 .note-textarea {
   width: 100%;
   resize: none;
   height: 100%;
-  margin: 2px 0;
-  font-size: 15px;
+  padding: 0 5px;
+  font-size: inherit;
   overflow: scroll;
   white-space: pre-line;
   word-wrap: break-word;
   box-sizing: border-box;
-  background-color: #FDD835;
+  border-radius: 3px;
+  background-color: #ffffff00;
   border: none;
   line-height: 1.5em;
   cursor: move;
 }
-.note-textarea:focus {
-  outline: none !important;
-}
-
 .remove-note-btn {
-  top: -11.5%;
   position: relative;
+  top: -17.3%;
+  right: 0.2%;
   background: #f44336;
+  border: 1px solid red;
   border-radius: 3px;
   color: whitesmoke;
   cursor: pointer;
@@ -41,3 +38,25 @@
 .remove-note-btn:hover {
   background: #e53935;
 }
+.note-createdat {
+  color: #757575;
+  font-size: 12px;
+  top: 93%;
+  position: absolute;
+  right: 0%;
+  opacity: 0;
+  font-family: cursive;
+}
+
+/* CSS events */
+.note-box:hover > button {
+  opacity: 1;
+}
+.note-box:hover > span  {
+  opacity: 1;
+}
+
+.note-textarea:focus {
+  outline: none !important;
+}
+

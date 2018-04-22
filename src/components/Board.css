@@ -2,7 +2,34 @@
   margin: .5em;
 }
 .add-note-btn {
+  position: absolute;
   top: 5px;
   right: 5px;
+  color: whitesmoke;
+  background: #2196f3;
+  border-radius: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  border-color: #42a5f5;
+}
+
+.add-note-btn:hover {
+  background: #42a5f5;
+}
+
+.settings-btn {
+  background: #90a4ae;
+  color: whitesmoke;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
   position: absolute;
+  top: 40px;
+  right: 5px;
+  font-size: 15px;
+  border-radius: 20px;
+  border-color: #bdbdbd;
+}
+.settings-btn:hover {
+  background: #90a4aed4;
 }

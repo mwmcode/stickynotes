@@ -1,25 +1,35 @@
 import React from 'react';
-import extend from 'just-extend';
-import Note from './Note';
 import './Board.css';
+import Note from './Note';
+import * as storage from '../storage_api';
 
 
 export default class NotesBoard extends React.Component {
 	state = {
 		notes: [],
+		catchedError: false,
 	};
 
 	componentDidMount() {
+		// listen to ctr+enter to add new
 		document.addEventListener('keydown',this.keydownHandler);
-		const notes = JSON.parse(localStorage.getItem('ME_NOTES'));
+		// load notes
+		const notes = storage.getNotes();
 		this.setState({ notes });
 	}
 
   componentWillUnmount() {
+		// not really needed here ...but just to enforce practice
     document.removeEventListener('keydown',this.keydownHandler);
 	}
 
+	componentDidCatch(err, info) {
+		console.error(err);
+		console.info(info);
+    this.setState({ catchedError: true });
+  }
 
+	// ctr + enter
 	keydownHandler = evt => {
 		if ( evt.keyCode === 13 && evt.ctrlKey ) {
 			this.addNewNote();
@@ -27,25 +37,21 @@ export default class NotesBoard extends React.Component {
 	};
 
 	addNewNote = () => {
+		const datetimestamp = Date.now();
 		const note = {
-			id: Date.now(),
+			id: datetimestamp,
 			body: '',
-			style: {}
+			style: {},
+			createdAt: new Date(datetimestamp).toLocaleString()
 		};
 
 		this.saveNotes([...this.state.notes, note]);
 	};
 
-	updateNote = (id, updatedProp) => {
-		const notes = this.state.notes.map( note => {
-			if ( note.id === id ) {
-				extend(note, updatedProp);
-				console.info('updated note ', note);
-			}
-			return note;
-		});
+	updateNote = updatedNote => {
+		const newNotes = this.state.notes.map(note => (note.id === updatedNote.id) ? updatedNote : note);
 
-		this.saveNotes(notes);
+		this.saveNotes(newNotes);
 	};
 
 	removeNote = id  => {
@@ -55,17 +61,21 @@ export default class NotesBoard extends React.Component {
 	};
 
 	saveNotes = notes => {
-		this.setState({ notes });
-		localStorage.setItem('ME_NOTES', JSON.stringify(notes));
-		// chrome.storage.local.set({notes: arr}, function () {
-
-	  //       self.setState({notes: arr});
-		// });
-		console.log('note : ', this.state.notes);
+		this.setState(
+			() => ({ notes }),
+			() => storage.saveNotes(notes)
+		);
 	};
 
 	render() {
-		const { notes } = this.state;
+		const {
+			notes,
+			catchedError,
+		} = this.state;
+
+		if ( catchedError ) {
+			return <span>Ops! Something went wrong :(</span>
+		}
 
 		return (
 			<div className='notes-board' >
@@ -79,10 +89,18 @@ export default class NotesBoard extends React.Component {
 				)}
 
 				<button
+					title='new note'
 					className='add-note-btn'
 					onClick={this.addNewNote}
 				>
-				ADD NOTE
+					&#43;
+				</button>
+
+				<button
+					title='settings'
+					className='settings-btn'
+				>
+					&#402;
 				</button>
 			</div>
 		);
