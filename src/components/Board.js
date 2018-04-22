@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Note from './Note';
+import Toggle from './ToggleButton';
 import SettingsPanel from './SettingsPanel';
 import * as storage from '../storage_api';
 import {
@@ -18,7 +19,7 @@ export const ThemeContext = React.createContext();
 export default class NotesBoard extends React.Component {
 	state = {
 		...DEFAULT_STORAGE_STATE,
-		toggleSettings: false,
+		showSettings: false,
 		catchedError: false,
 	};
 
@@ -56,7 +57,7 @@ export default class NotesBoard extends React.Component {
 		this.setState(storageState);
 	};
 
-	toggleSettings = () => this.setState({toggleSettings: !this.state.toggleSettings});
+	toggleSettings = () => this.setState({showSettings: !this.state.showSettings});
 
 	updateNoteStyle = (newProp={}) => {
 		const updatedProps = {
@@ -98,7 +99,7 @@ export default class NotesBoard extends React.Component {
 		const {
 			notes,
 			noteStyle,
-			toggleSettings,
+			showSettings,
 			catchedError,
 		} = this.state;
 
@@ -135,21 +136,26 @@ export default class NotesBoard extends React.Component {
 					</ReactCSSTransitionGroup>
 
 					<button
-						title='new note'
+						title='new note (ctr + ⏎)'
 						className='add-note-btn'
 						onClick={this.addNewNote}
 					>
 						&#43;
 					</button>
 
-					<button
+					{/* <button
 						title='settings'
 						className='settings-btn'
 						onClick={this.toggleSettings}
 					>
 						&#402;
-					</button>
-					<div className={`${toggleSettings ? 'board-settings' : 'hide'}`}>
+					</button> */}
+					<Toggle
+						on={showSettings}
+						onToggle={this.toggleSettings}
+						className='settings-btn'
+					/>
+					<div className={`${showSettings ? 'board-settings' : 'hide'}`}>
 						<SettingsPanel />
 					</div>
 				</ThemeContext.Provider>

@@ -29,8 +29,6 @@ const Select = ({propKey='', optionsObj={}}) => (
   </ThemeContext.Consumer>
 );
 
-
-
 const SettingsPanel = () => (
   <span className='settings-panel'>
     <Select

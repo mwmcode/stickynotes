@@ -22,20 +22,15 @@
 }
 
 .settings-btn {
-  background: #90a4ae;
   color: whitesmoke;
-  border-radius: 3px;
-  font-size: 10px;
+  background: #546e7a;
   cursor: pointer;
   position: absolute;
   top: 40px;
   right: 5px;
-  font-size: 15px;
-  border-radius: 20px;
-  border-color: #bdbdbd;
-}
-.settings-btn:hover {
-  background: #90a4aed4;
+  font-size: 9px;
+  border-radius: 11px;
+
 }
 
 .board-settings {
