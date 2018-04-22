@@ -6,7 +6,8 @@
   background: #FDD835;
   transform: rotate(2deg);
   box-shadow:5px 10px 15px 0 rgba(0,0,0,.2);
-  border-bottom-left-radius: 5px;
+  border-top-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 .note-textarea {
   width: 100%;
@@ -23,23 +24,26 @@
   border: none;
   line-height: 1.5em;
   cursor: move;
+  font-family: inherit;
+  color: inherit;
 }
 .remove-note-btn {
-  position: relative;
-  top: -17.3%;
-  right: 0.2%;
-  background: #f44336;
-  border: 1px solid red;
-  border-radius: 3px;
+  position: absolute;
+  bottom: 0%;
+  left: 0.1%;
+  background: #B71C1C;
+  border: 1px solid #D50000;
   color: whitesmoke;
   cursor: pointer;
   opacity: 0;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 5px;
 }
 .remove-note-btn:hover {
   background: #e53935;
 }
 .note-createdat {
-  color: #757575;
+  color: #263238;
   font-size: 12px;
   top: 93%;
   position: absolute;

@@ -1,20 +1,30 @@
-const STORAGE_KEY = '__STICKYNOTES__V2__';
+import {
+  STORAGE_KEY,
+  DEFAULT_STORAGE_STATE,
+} from './CONSTANTS';
 
-
-export function getNotes() {
-  const notes = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  return notes || [];
+function store(obj=DEFAULT_STORAGE_STATE) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+  } catch (e) {
+    console.error(`Couldn't store ${obj} to localStorage`);
+  }
+  return obj;
 }
 
+//
+// Exposed
+// -------
+export function load() {
+  const result = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  return result || store(); // init load, store default state
+}
 
-export function saveNotes(notes) {
+export function save(obj) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-    return true;
+    return store({...load(), ...obj});
   } catch (e) {
-    console.error(`Couldn't save to localStorage::${STORAGE_KEY}! ${e}`);
-    return false;
+    return void console.error(`Couldn't save to localStorage::${STORAGE_KEY}! ${e}`);
   }
 }
-
 

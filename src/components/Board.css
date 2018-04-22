@@ -1,3 +1,7 @@
+.hide {
+  display: none !important;
+}
+
 .notes-board {
   margin: .5em;
 }
@@ -32,6 +36,13 @@
 }
 .settings-btn:hover {
   background: #90a4aed4;
+}
+
+.board-settings {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  z-index: 9999999;
 }
 
 /* CSS Transition */

@@ -1,5 +1,4 @@
 import React from 'react';
-import extend from 'just-extend';
 import Draggable from 'react-draggable';
 import {
 	shape,
@@ -7,8 +6,9 @@ import {
 	string,
 	func,
 } from 'prop-types';
+import { ThemeContext } from './Board';
 import {
-	DEFAULT_NOTE_STYLE,
+	NOTE_MARGIN,
 } from '../CONSTANTS';
 
  import './Note.css';
@@ -32,23 +32,22 @@ export default class Note extends React.Component {
 
 	onDragStop = () => {
 		const { x, y } = this.noteRef.current.getBoundingClientRect();
-		const marginNumVal = Number.parseInt(DEFAULT_NOTE_STYLE.margin, 10); // cast to int/get rid of 'px'
 
-		const newNote = extend(
-			this.props.note, {
+		const newNote = {
+			...this.props.note,
 			style: {
+				...this.props.note.style,
 				position: 'fixed',
-				top: `${y - marginNumVal}px`,
-				left: `${x - marginNumVal}px`,
+				top: `${y - NOTE_MARGIN}px`,
+				left: `${x - NOTE_MARGIN}px`,
 			},
-		});
+		};
 
 		this.update(newNote);
 	};
 
 	onNoteChange = () => {
 		const text = this.noteRef.current.value;
-
 		const newNote = {...this.props.note, body: text };
 
 		this.update(newNote);
@@ -59,37 +58,41 @@ export default class Note extends React.Component {
 		const { note } = this.props;
 
 		return (
-			<Draggable
-				position={{x:0, y:0}}
-				onStop={this.onDragStop}
-				enableUserSelectHack={false}
-			>
-				<div
-					style={{...DEFAULT_NOTE_STYLE, ...note.style}}
-					className='note-box'
-				>
-					<textarea
-						autoFocus
-						onBlur={this.onNoteChange}
-						className='note-textarea'
-						defaultValue={note.body}
-						ref={this.noteRef}
-					/>
-					<button
-						title='remove'
-						className='remove-note-btn'
-						onClick={this.remove}
+			<ThemeContext.Consumer>
+				{ ({ style }) =>
+					<Draggable
+						position={{x:0, y:0}}
+						onStop={this.onDragStop}
+						enableUserSelectHack={false}
 					>
-						&#8212;
-					</button>
-					<span className='note-createdat'>
-						{note.createdAt}
-					</span>
-					{/* <button className='note-settings-btn'>
-						&#8230;
-					</button> */}
-				</div>
-			</Draggable>
+						<div
+							style={{...style, ...note.style}}
+							className='note-box'
+						>
+							<textarea
+								autoFocus
+								onBlur={this.onNoteChange}
+								className='note-textarea'
+								defaultValue={note.body}
+								ref={this.noteRef}
+							/>
+							<button
+								title='remove'
+								className='remove-note-btn'
+								onClick={this.remove}
+							>
+								&#8212;
+							</button>
+							<span className='note-createdat'>
+								{note.createdAt}
+							</span>
+							{/* <button className='note-settings-btn'>
+								&#8230;
+							</button> */}
+						</div>
+					</Draggable>
+				}
+			</ThemeContext.Consumer>
     );
 	}
 }
