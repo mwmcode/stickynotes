@@ -50,7 +50,7 @@ export default class Note extends React.Component {
 
 		return (
 			<ThemeContext.Consumer>
-				{({ style }) =>
+				{({ defaultNoteStyle }) =>
 					<Draggable
 						position={{ x: 0, y: 0 }}
 						onStop={this.onDragStop}
@@ -58,7 +58,7 @@ export default class Note extends React.Component {
 					>
 						<div style={{...note.position}}>
 							<div
-								style={{ ...style, ...note.style }}
+								style={{ ...defaultNoteStyle, ...note.style }}
 								className='note-box'
 							>
 								<EmojiIcon

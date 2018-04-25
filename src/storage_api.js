@@ -3,6 +3,14 @@ import {
   DEFAULT_STORAGE_STATE,
 } from './CONSTANTS';
 
+/** storage:
+ * {
+ *  noteStyle: {},
+ *  boardStyle: {},
+ *  notes: []
+ * }
+ */
+
 function store(obj=DEFAULT_STORAGE_STATE) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
