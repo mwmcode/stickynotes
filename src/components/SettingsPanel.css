@@ -1,5 +1,14 @@
 .settings-panel {
   display: flex;
   flex-direction: column;
-
+  padding: 10px 2px 20px 20px;
+}
+.night-mode-toggle {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.night-mode-emojies {
+  font-size: 20px;
+  display: flex;
 }

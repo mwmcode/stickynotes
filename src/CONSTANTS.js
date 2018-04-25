@@ -1,3 +1,5 @@
+export const STORAGE_KEY = '__STICKYNOTES__V2__';
+
 export const DEFAULT_STORAGE_STATE = {
   notes: [],
   noteStyle: {
@@ -5,9 +7,12 @@ export const DEFAULT_STORAGE_STATE = {
     fontSize: '24px',
     color: '#F1EDED',
   },
+  boardStyle: {
+    nightMode: false,
+  }
 };
 
-export const STORAGE_KEY = '__STICKYNOTES__V2__';
+export const NIGHT_BG_COLOR = '#2B3B44';
 
 export const BG_COLOR_CODES = {
   'Red': '#F44336',

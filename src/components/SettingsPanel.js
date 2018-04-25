@@ -1,6 +1,10 @@
 import React from 'react';
 import { ThemeContext } from './Board';
 import {
+  EmojiIcon,
+  ToggleButton,
+ } from './reuseables';
+import {
   FONT_SIZES,
   FONT_FAMILIES,
   BG_COLOR_CODES,
@@ -11,10 +15,10 @@ import './SettingsPanel.css';
 
 const Select = ({propKey='', optionsObj={}}) => (
   <ThemeContext.Consumer>
-    { ({style, update}) =>
+    { ({defaultNoteStyle, updateNoteStyle}) =>
       <select
-        value={style[propKey]}
-        onChange={e=> update({[propKey]: e.target.value})}
+        value={defaultNoteStyle[propKey]}
+        onChange={e=> updateNoteStyle({[propKey]: e.target.value})}
       >
         {Object.keys(optionsObj).map(k =>
           <option
@@ -31,6 +35,23 @@ const Select = ({propKey='', optionsObj={}}) => (
 
 const SettingsPanel = () => (
   <span className='settings-panel'>
+    <ThemeContext.Consumer>
+      { ({defaultBoardStyle: {nightMode} , updateBoardStyle}) =>
+        <span className='night-mode-toggle'>
+          <ToggleButton
+          on={!nightMode}
+          onClick={()=>updateBoardStyle({nightMode: !nightMode})}
+        />
+        <EmojiIcon
+          className='night-mode-emojies'
+          aria-label='sun or moon emoji'
+        >
+          {nightMode ? '🌙' : '🌤'}
+        </EmojiIcon>
+        </span>
+      }
+    </ThemeContext.Consumer>
+
     <Select
       propKey='background'
       optionsObj={BG_COLOR_CODES}
@@ -47,6 +68,12 @@ const SettingsPanel = () => (
       propKey='fontSize'
       optionsObj={FONT_SIZES}
     />
+    {/* <EmojiIcon
+      className=''
+      aria-label=''
+    >
+      🔁 sort
+    </EmojiIcon> */}
   </span>
 );
 

@@ -11,8 +11,7 @@
   height: 210px;
   cursor: move;
   box-shadow:5px 10px 15px 0 rgba(0,0,0,.2);
-  border-top-right-radius: 7px;
-  border-bottom-left-radius: 7px;
+  border-radius: 2px;
 }
 .note-textarea {
   width: 100%;
