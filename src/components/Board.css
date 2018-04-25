@@ -21,22 +21,17 @@
   background: #42a5f5;
 }
 
-.settings-btn {
-  color: whitesmoke;
-  background: #546e7a;
-  cursor: pointer;
+.settings-emoji {
   position: absolute;
   top: 40px;
   right: 5px;
-  font-size: 9px;
-  border-radius: 11px;
-
+  font-size: 16px;
 }
 
 .board-settings {
   position: absolute;
   top: 40px;
-  right: 40px;
+  right: 5px;
   z-index: 9999999;
 }
 
@@ -46,7 +41,7 @@
 }
 .note-enter.note-enter-active {
   opacity: 1;
-  transition: opacity 650ms ease-in;
+  transition: opacity 450ms ease-in;
 }
 
 .note-leave {

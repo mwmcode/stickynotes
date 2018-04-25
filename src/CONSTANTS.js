@@ -1,9 +1,6 @@
-export const NOTE_MARGIN = 4;
-
 export const DEFAULT_STORAGE_STATE = {
   notes: [],
   noteStyle: {
-    margin: `${NOTE_MARGIN}px`,
     background: '#FDD835',
     fontSize: '24px',
     color: '#F1EDED',
@@ -28,7 +25,6 @@ export const BG_COLOR_CODES = {
 export const FONT_COLOR_CODES = {
   'White': 'white',
   'Black': 'black',
-  ...BG_COLOR_CODES
 };
 
 export const FONT_SIZES = {

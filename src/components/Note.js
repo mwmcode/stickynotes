@@ -2,44 +2,35 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import {
 	shape,
-  number,
+	number,
 	string,
 	func,
 } from 'prop-types';
+import { EmojiIcon } from './reuseables';
 import { ThemeContext } from './Board';
-import {
-	NOTE_MARGIN,
-} from '../CONSTANTS';
 
- import './Note.css';
+import './Note.css';
 
 
 export default class Note extends React.Component {
 
 	noteRef = React.createRef();
 
-	componentDidMount() {
-		// this.style = {
-		// 	right: this.randomBetween(0, window.innerWidth - 150) + 'px',
-		// 	top: this.randomBetween(0, window.innerHeight - 150) + 'px',
-		// 	transform: 'rotate('+ this.randomBetween(-15, 15) +'deg)',
-		// };
-	}
-
 	// calls passed functions
 	update = note => this.props.updateFn(note);
 	remove = () => this.props.removeFn(this.props.note.id);
 
 	onDragStop = () => {
+		const { note } = this.props;
 		const { x, y } = this.noteRef.current.getBoundingClientRect();
+		const margin = Number.parseInt(note.style.margin, 10); // get number out of string i.e. 4px -> 4
 
 		const newNote = {
-			...this.props.note,
-			style: {
-				...this.props.note.style,
+			...note,
+			position: {
 				position: 'fixed',
-				top: `${y - NOTE_MARGIN}px`,
-				left: `${x - NOTE_MARGIN}px`,
+				top: `${y - margin}px`,
+				left: `${x - margin}px`,
 			},
 		};
 
@@ -48,7 +39,7 @@ export default class Note extends React.Component {
 
 	onNoteChange = () => {
 		const text = this.noteRef.current.value;
-		const newNote = {...this.props.note, body: text };
+		const newNote = { ...this.props.note, body: text };
 
 		this.update(newNote);
 	};
@@ -59,41 +50,50 @@ export default class Note extends React.Component {
 
 		return (
 			<ThemeContext.Consumer>
-				{ ({ style }) =>
+				{({ style }) =>
 					<Draggable
-						position={{x:0, y:0}}
+						position={{ x: 0, y: 0 }}
 						onStop={this.onDragStop}
 						enableUserSelectHack={false}
 					>
-						<div
-							style={{...style, ...note.style}}
-							className='note-box'
-						>
-							<textarea
-								autoFocus
-								onBlur={this.onNoteChange}
-								className='note-textarea'
-								defaultValue={note.body}
-								ref={this.noteRef}
-							/>
-							<button
-								title='remove'
-								className='remove-note-btn'
-								onClick={this.remove}
+						<div style={{...note.position}}>
+							<div
+								style={{ ...style, ...note.style }}
+								className='note-box'
 							>
-								&#8212;
-							</button>
-							<span className='note-createdat'>
-								{note.createdAt}
-							</span>
-							{/* <button className='note-settings-btn'>
-								&#8230;
-							</button> */}
+								<EmojiIcon
+									className='red-circle-emoji'
+									aria-label='red circle emoji'
+								>
+									🔴
+								</EmojiIcon>
+
+								<textarea
+									autoFocus
+									onBlur={this.onNoteChange}
+									className='note-textarea'
+									defaultValue={note.body}
+									ref={this.noteRef}
+								/>
+
+								<EmojiIcon
+									onClick={this.remove}
+									title='remove note'
+									aria-label='waste can emoji'
+									className='waste-can-emoji'
+								>
+									🗑
+								</EmojiIcon>
+
+								<span className='note-createdat'>
+									{note.createdAt}
+								</span>
+							</div>
 						</div>
 					</Draggable>
 				}
 			</ThemeContext.Consumer>
-    );
+		);
 	}
 }
 
@@ -109,8 +109,8 @@ Note.propTypes = {
 };
 
 Note.defaultProps = {
-	updateFn: () => {},
-	removeFn: () => {},
+	updateFn: () => { },
+	removeFn: () => { },
 	note: {
 		id: 0,
 		body: '',

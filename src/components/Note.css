@@ -1,10 +1,15 @@
-.note-box {
+.not-wrapper {
   float: left;
+  margin: 4px;
   width: 310px;
   height: 210px;
+}
+.note-box {
+  float: left;
   margin: 4px;
-  background: #FDD835;
-  transform: rotate(2deg);
+  width: 310px;
+  height: 210px;
+  cursor: move;
   box-shadow:5px 10px 15px 0 rgba(0,0,0,.2);
   border-top-right-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -13,31 +18,26 @@
   width: 100%;
   resize: none;
   height: 100%;
-  padding: 0 5px;
-  font-size: inherit;
+  padding: 3px 5px;
+  border: none;
   overflow: scroll;
   white-space: pre-line;
   word-wrap: break-word;
   box-sizing: border-box;
-  border-radius: 3px;
   background-color: #ffffff00;
-  border: none;
   line-height: 1.5em;
   cursor: move;
   font-family: inherit;
   color: inherit;
+  font-size: inherit;
 }
-.remove-note-btn {
+.waste-can-emoji {
   position: absolute;
-  bottom: 0%;
-  left: 0.1%;
-  background: #B71C1C;
-  border: 1px solid #D50000;
-  color: whitesmoke;
-  cursor: pointer;
+  bottom: -5%;
+  left: 0%;
   opacity: 0;
-  border-top-right-radius: 6px;
-  border-bottom-left-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
 }
 .remove-note-btn:hover {
   background: #e53935;
@@ -50,6 +50,13 @@
   right: 0%;
   opacity: 0;
   font-family: cursive;
+}
+
+.red-circle-emoji {
+  position: absolute;
+  top: -3%;
+  right: 48%;
+  font-size: 9px;
 }
 
 /* CSS events */

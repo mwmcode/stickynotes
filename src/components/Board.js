@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Note from './Note';
-import Toggle from './ToggleButton';
 import SettingsPanel from './SettingsPanel';
 import * as storage from '../storage_api';
 import {
@@ -103,6 +102,12 @@ export default class NotesBoard extends React.Component {
 			catchedError,
 		} = this.state;
 
+		if ( catchedError ) {
+			return (<span>Ops! Something went wrong
+				<span role='img' aria-label='disappointed relieved emoji face'> 😥 </span>
+			</span>);
+		}
+
 		const noteBoxes = notes.map( note =>
 			<Note
 				key={note.id}
@@ -111,10 +116,6 @@ export default class NotesBoard extends React.Component {
 				removeFn={this.removeNote}
 			/>
 		);
-
-		if ( catchedError ) {
-			return <span>Ops! Something went wrong :(</span>
-		}
 
 		return (
 			<div className='notes-board' >
@@ -136,28 +137,30 @@ export default class NotesBoard extends React.Component {
 					</ReactCSSTransitionGroup>
 
 					<button
-						title='new note (ctr + ⏎)'
+						title='New note (ctr + ⏎)'
 						className='add-note-btn'
 						onClick={this.addNewNote}
 					>
 						&#43;
 					</button>
 
-					{/* <button
-						title='settings'
-						className='settings-btn'
-						onClick={this.toggleSettings}
-					>
-						&#402;
-					</button> */}
-					<Toggle
-						on={showSettings}
-						onToggle={this.toggleSettings}
-						className='settings-btn'
-					/>
-					<div className={`${showSettings ? 'board-settings' : 'hide'}`}>
-						<SettingsPanel />
-					</div>
+					{!showSettings ?
+						<span
+							role='img'
+							className='settings-emoji'
+							aria-label='heavy plus sign'
+							onMouseEnter={()=>this.setState({showSettings: true})}
+						>
+							⚙️
+						</span>
+					:
+						<div
+							className='board-settings'
+							onMouseLeave={()=> setTimeout(()=> this.setState({showSettings: false}), 1000)}
+						>
+							<SettingsPanel />
+						</div>
+					}
 				</ThemeContext.Provider>
 			</div>
 		);
