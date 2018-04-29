@@ -1,6 +1,9 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
+const portNo = 4040;
 
 const config = {
   context: __dirname,
@@ -44,7 +47,9 @@ const config = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new OpenBrowserPlugin({ url: `http://localhost:${portNo}` })
+
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx']
@@ -58,7 +63,7 @@ const config = {
 
   devServer: {
     hot: true,
-    port: 4040,
+    port: portNo,
     publicPath: '/public/',
     historyApiFallback: true
   }

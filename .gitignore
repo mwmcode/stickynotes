@@ -5,11 +5,10 @@ node_modules/
 coverage/
 .nyc_output
 .DS_Store
-public/public/*.js
-public/public/*.map
+public/public/**/*.js
+public/public/**/*.map
 *.map
 .sass-cache/
 *.iml
-src/__tests__/__snapshots__/
 .vscode/
 .idea/

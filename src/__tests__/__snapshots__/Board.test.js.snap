@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotesBoard renders correctly 1`] = `
+<div
+  className="notes-board"
+  style={
+    Object {
+      "background": "",
+    }
+  }
+>
+  <span />
+  <span
+    aria-label="heavy plus sign"
+    className="plus-sign-emoji"
+    onClick={[Function]}
+    role="img"
+    title="New note (ctr + ⏎)"
+  >
+    ➕
+  </span>
+  <span
+    aria-label="gear sign"
+    className="settings-emoji"
+    onClick={[Function]}
+    role="img"
+  >
+    ⚙️
+  </span>
+</div>
+`;
