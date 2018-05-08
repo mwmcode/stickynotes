@@ -7,7 +7,7 @@
   "author": "mustafa",
   "license": "ISC",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --hide-modules --progress",
+    "build": "cross-env NODE_ENV=production webpack --hide-modules --progress --mode production",
     "dev:build": "cross-env NODE_ENV=development webpack -d --mode development",
     "dev": "webpack-dev-server --colors --inline --progress --mode development",
     "watch": "cross-env NODE_ENV=development webpack --watch --mode development",
@@ -16,6 +16,7 @@
     "test:coverage": "cross-env NODE_ENV=test jest --coverage"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-addons-css-transition-group": "^15.6.2",

@@ -24,11 +24,12 @@ export default class NotesBoard extends React.Component {
 		catchedError: false,
 	};
 
-	componentDidMount() {
+	async componentDidMount() {
 		// listen to ctr+enter to add new
 		document.addEventListener('keydown',this.keydownHandler);
 		// load storage state
-		const storageState = this.getFromStore();
+		const storageState = await storage.load();
+
 		this.setState(
 			prevState => ({...prevState, ...storageState})
 		);
@@ -51,11 +52,6 @@ export default class NotesBoard extends React.Component {
 		 	prevState => ({...prevState, ...obj}),
 			() => storage.save(obj)
 		)
-	};
-
-	getFromStore = () => {
-		const storageState = storage.load();
-		this.setState(storageState);
 	};
 
 	toggleSettings = () => this.setState({showSettings: !this.state.showSettings});

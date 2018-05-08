@@ -1,17 +1,5 @@
 export const STORAGE_KEY = '__STICKYNOTES__V2__';
 
-export const DEFAULT_STORAGE_STATE = {
-  notes: [],
-  noteStyle: {
-    background: '#FDD835',
-    fontSize: '24px',
-    color: '#F1EDED',
-  },
-  boardStyle: {
-    nightMode: false,
-  }
-};
-
 export const NIGHT_BG_COLOR = '#2B3B44';
 
 export const BG_COLOR_CODES = {
@@ -45,4 +33,18 @@ export const FONT_FAMILIES = {
   'Mono Space': 'monospace',
   'Serif': 'serif',
   'San Serif': 'sans-serif',
-}
+};
+
+export const DEFAULT_STORAGE_STATE = {
+  notes: [],
+  noteStyle: {
+    color: FONT_COLOR_CODES.Black,
+    background: BG_COLOR_CODES.Whitesmoke,
+    fontSize: FONT_SIZES.Large,
+    fontFamily: FONT_FAMILIES.Fantasy,
+  },
+  boardStyle: {
+    nightMode: false,
+  }
+};
+

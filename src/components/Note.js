@@ -69,7 +69,6 @@ export default class Note extends React.Component {
 								</EmojiIcon>
 
 								<textarea
-									autoFocus
 									onBlur={this.onNoteChange}
 									className='note-textarea'
 									defaultValue={note.body}

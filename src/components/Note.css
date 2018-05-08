@@ -26,9 +26,9 @@
   background-color: #ffffff00;
   line-height: 1.5em;
   cursor: move;
-  font-family: inherit;
-  color: inherit;
-  font-size: inherit;
+  font-family: inherit !important;
+  color: inherit !important;
+  font-size: inherit !important;
 }
 .waste-can-emoji {
   position: absolute;

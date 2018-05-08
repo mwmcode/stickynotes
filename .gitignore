@@ -5,8 +5,8 @@ node_modules/
 coverage/
 .nyc_output
 .DS_Store
-public/public/**/*.js
-public/public/**/*.map
+public/**/*.js
+public/**/*.map
 *.map
 .sass-cache/
 *.iml
