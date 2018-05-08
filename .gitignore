@@ -7,8 +7,12 @@ coverage/
 .DS_Store
 public/**/*.js
 public/**/*.map
+public/icons
 *.map
 .sass-cache/
 *.iml
 .vscode/
 .idea/
+*.crx
+*.pem
+*.zip

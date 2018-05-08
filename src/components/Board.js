@@ -147,23 +147,9 @@ export default class NotesBoard extends React.Component {
 					>
 						➕
 					</EmojiIcon>
+					
+					<SettingsPanel show={showSettings} toggle={value=>this.setState({showSettings: value})}/>
 
-					{!showSettings ?
-						<EmojiIcon
-							className='settings-emoji'
-							aria-label='gear sign'
-							onClick={()=>this.setState({showSettings: true})}
-						>
-							⚙️
-						</EmojiIcon>
-					:
-						<div
-							className='board-settings'
-							onMouseLeave={()=> setTimeout(()=> this.setState({showSettings: false}), 1000)}
-						>
-							<SettingsPanel />
-						</div>
-					}
 				</ThemeContext.Provider>
 			</div>
 		);

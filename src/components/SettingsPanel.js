@@ -33,49 +33,59 @@ const Select = ({propKey='', optionsObj={}}) => (
   </ThemeContext.Consumer>
 );
 
-const SettingsPanel = () => (
-  <span className='settings-panel'>
-    <ThemeContext.Consumer>
-      { ({defaultBoardStyle: {nightMode} , updateBoardStyle}) =>
-        <span className='night-mode-toggle'>
-          <ToggleButton
-          on={!nightMode}
-          onClick={()=>updateBoardStyle({nightMode: !nightMode})}
-        />
-        <EmojiIcon
-          className='night-mode-emojies'
-          aria-label='sun or moon emoji'
-        >
-          {nightMode ? '🌙' : '🌤'}
-        </EmojiIcon>
-        </span>
-      }
-    </ThemeContext.Consumer>
+const SettingsPanel = ({show=false, toggle=()=>{}}) => (
+  <React.Fragment>
+    <EmojiIcon
+      aria-label='gear sign'
+      className='settings-emoji'
+      onClick={() => toggle(!show)}
+    >
+      {show ? '✖️' : '⚙'}️
+    </EmojiIcon>
+    <span className={`${show ? 'board-settings settings-panel' : 'hide'}`} >
+      <ThemeContext.Consumer>
+        {({ defaultBoardStyle: { nightMode }, updateBoardStyle }) =>
+          <span className='night-mode-toggle'>
+            <ToggleButton
+              on={!nightMode}
+              onClick={() => updateBoardStyle({ nightMode: !nightMode })}
+            />
+            <EmojiIcon
+              className='night-mode-emojies'
+              aria-label='sun or moon emoji'
+            >
+              {nightMode ? '🌙' : '🌤'}
+            </EmojiIcon>
+          </span>
+        }
+      </ThemeContext.Consumer>
 
-    <Select
-      propKey='background'
-      optionsObj={BG_COLOR_CODES}
-    />
-    <Select
-      propKey='color'
-      optionsObj={FONT_COLOR_CODES}
-    />
-    <Select
-      propKey='fontFamily'
-      optionsObj={FONT_FAMILIES}
-    />
-    <Select
-      propKey='fontSize'
-      optionsObj={FONT_SIZES}
-    />
-    {/* <EmojiIcon
+      <Select
+        propKey='background'
+        optionsObj={BG_COLOR_CODES}
+      />
+      <Select
+        propKey='color'
+        optionsObj={FONT_COLOR_CODES}
+      />
+      <Select
+        propKey='fontFamily'
+        optionsObj={FONT_FAMILIES}
+      />
+      <Select
+        propKey='fontSize'
+        optionsObj={FONT_SIZES}
+      />
+      {/* <EmojiIcon
       className=''
       aria-label=''
     >
       🔁 sort
     </EmojiIcon> */}
-  </span>
+    </span>
+  </React.Fragment>
 );
+
 
 
 export default SettingsPanel;

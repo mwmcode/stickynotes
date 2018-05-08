@@ -15,20 +15,6 @@
   cursor: pointer;
 }
 
-.settings-emoji {
-  position: absolute;
-  top: 28px;
-  right: 5px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.board-settings {
-  position: absolute;
-  top: 4%;
-  right: .4%;
-}
-
 /* CSS Transition */
 .note-enter {
   opacity: 0.01;
