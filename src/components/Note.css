@@ -14,12 +14,12 @@
   border-radius: 2px;
 }
 .note-textarea {
+  overflow: auto !important;
   width: 100%;
   resize: none;
   height: 100%;
   padding: 3px 5px;
   border: none;
-  overflow: scroll;
   white-space: pre-line;
   word-wrap: break-word;
   box-sizing: border-box;
@@ -57,7 +57,7 @@
 .red-circle-emoji {
   position: absolute;
   top: -6px;
-  right: 150px;
+  right: 148px;
   font-size: 9px !important;
 }
 
