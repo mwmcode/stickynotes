@@ -15,7 +15,7 @@ export function createNote() {
     },
     style: {
       margin: '4px',
-      transform: `rotate(${getRandomNum(-2, 2)}deg)`,
+      transform: `rotate(${getRandomNum(-3, 3)}deg)`,
     },
     createdAt: new Date(datetimestamp).toLocaleString(),
   };

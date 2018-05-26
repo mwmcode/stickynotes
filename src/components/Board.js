@@ -37,7 +37,7 @@ export default class NotesBoard extends React.Component {
 
   componentWillUnmount() {
 		// not really needed here ...but just to enforce practice
-    document.removeEventListener('keydown',this.keydownHandler);
+    document.removeEventListener('keydown', this.keydownHandler);
 	}
 
 	componentDidCatch(err, info) {
