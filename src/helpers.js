@@ -3,10 +3,10 @@ function getRandomNum(min=0, max=900) {
 }
 
 export function createNote() {
-  const datetimestamp = Date.now();
+  const now = new Date();
 
   return {
-    id: datetimestamp,
+    id: now.getTime(),
     body: '',
     position: {
       position: 'fixed',
@@ -17,6 +17,6 @@ export function createNote() {
       margin: '4px',
       transform: `rotate(${getRandomNum(-3, 3)}deg)`,
     },
-    createdAt: new Date(datetimestamp).toLocaleString(),
+    createdAt: now.toLocaleString('en-AU'),
   };
 }

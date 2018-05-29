@@ -1,7 +1,7 @@
 import React from 'react';
 import './reuseables.css';
 
-export const EmojiIcon = ({children, ...props}) => <span role='img' {...props}>{children}</span>
+export const EmojiIcon = ({children, ...props}) => (<span role='img' {...props}>{children}</span>);
 
 
 export const ToggleButton = ({ on=false, className='', ...props }) => (

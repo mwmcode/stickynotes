@@ -5,7 +5,7 @@
     "version": "2.0.2",
     "description": "Simple sticky notes board - tab extension",
     "author": "Mustafa Al-Saegh",
-    "homepage_url": "http://mustafawatha.com",
+    "homepage_url": "https://github.com/mustafawm/stickynotes",
     "permissions": ["storage"],
     "chrome_url_overrides": {
         "newtab": "index.html"
