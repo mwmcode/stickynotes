@@ -1,5 +1,6 @@
 /* eslint no-return-assign:0 */
 import React from 'react';
+import debounce from 'just-debounce-it';
 import {
 	shape,
 	number,
@@ -17,10 +18,17 @@ export default class NoteCard extends React.Component {
   isDragging   = false;
   previousTop  = 0;
   previousLeft = 0;
+  noteRef      = React.createRef();
 
   // prop functions
 	update = note => this.props.updateFn(note);
   remove = () => this.props.removeFn(this.props.note.id);
+
+  onNoteChange = () => {
+		const text = this.noteRef.current.value;
+		const newNote = { ...this.props.note, body: text };
+		this.update(newNote);
+	};
 
   updatePreviousTopLeft = evt => {
     this.previousTop = evt.pageY;
@@ -77,25 +85,23 @@ export default class NoteCard extends React.Component {
         {({ defaultNoteStyle }) =>
           <div style={{...note.position}}>
             <div
-              style={{ ...defaultNoteStyle, ...note.style }}
               className='note-box'
+              onPointerUp={this.onUp}
               onPointerDown={this.onDown}
               onPointerMove={this.onMove}
-              onPointerUp={this.onUp}
               onPointerCancel={this.onUp}
+              style={{ ...defaultNoteStyle, ...note.style }}
             >
-              <EmojiIcon
-                className='red-circle-emoji'
-                aria-label='red circle emoji'
-              >
+              <EmojiIcon className='red-circle-emoji' aria-label='red circle emoji'>
                 🔴
               </EmojiIcon>
 
               <textarea
-                onBlur={this.onNoteChange}
+                ref={this.noteRef}
                 className='note-textarea'
                 defaultValue={note.body}
-                ref={this.noteRef}
+                onBlur={this.onNoteChange}
+                onChange={debounce(this.onNoteChange, 1000)}
               />
 
               <EmojiIcon

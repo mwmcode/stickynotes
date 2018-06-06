@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Sticky Notes Tab",
     "short_name": "Stick Notes Tab",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Simple sticky notes board - tab extension",
     "author": "Mustafa Al-Saegh",
     "homepage_url": "https://github.com/mustafawm/stickynotes",

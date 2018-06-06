@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "just-debounce-it": "^1.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-addons-css-transition-group": "^15.6.2",
