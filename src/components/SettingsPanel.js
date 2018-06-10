@@ -46,16 +46,22 @@ const SettingsPanel = ({show=false, toggle=()=>{}}) => (
       <ThemeContext.Consumer>
         {({ defaultBoardStyle: { nightMode }, updateBoardStyle }) =>
           <span className='night-mode-toggle'>
+            <EmojiIcon
+              className='night-mode-emojies'
+              aria-label='moon emoji'
+            >
+              🌙
+            </EmojiIcon>
             <ToggleButton
-              on={!nightMode}
+              on={nightMode}
               onClick={() => updateBoardStyle({ nightMode: !nightMode })}
             />
             <EmojiIcon
               className='night-mode-emojies'
-              aria-label='sun or moon emoji'
+              aria-label='sun emoji'
             >
-              {nightMode ? '🌙' : '🌤'}
-            </EmojiIcon>
+            🌞
+            </EmojiIcon>            
           </span>
         }
       </ThemeContext.Consumer>
