@@ -1,6 +1,10 @@
+import React from 'react';
+
+export const ThemeContext = React.createContext('ThemeContext');
+
 export const STORAGE_KEY = '__STICKYNOTES__V2__';
 
-export const NIGHT_BG_COLOR = '#2B3B44';
+export const NIGHT_BG_COLOR = '#26292B';
 
 export const BG_COLOR_CODES = {
   'Red': '#F44336',
@@ -44,7 +48,7 @@ export const DEFAULT_STORAGE_STATE = {
     fontFamily: FONT_FAMILIES.Fantasy,
   },
   boardStyle: {
-    nightMode: false,
+    daylight: false,
   }
 };
 

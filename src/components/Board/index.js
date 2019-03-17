@@ -1,27 +1,24 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Note from './Note';
-import { EmojiIcon } from './reuseables';
-import SettingsPanel from './SettingsPanel';
-import * as storage from '../storage_api';
+import Note from 'Note';
+import { EmojiIcon } from 'reuseables';
+import SettingsPanel from 'SettingsPanel';
+import * as storage from 'storage_api';
 import {
 	createNote,
-} from '../helpers';
+} from 'helpers';
 import {
+	ThemeContext,
 	NIGHT_BG_COLOR,
 	DEFAULT_STORAGE_STATE,
-} from '../CONSTANTS';
+} from 'CONSTANTS';
 
-import './Board.css';
-
-
-export const ThemeContext = React.createContext();
+import './styles.css';
 
 export default class NotesBoard extends React.Component {
 	state = {
 		...DEFAULT_STORAGE_STATE,
-		showSettings: false,
-		catchedError: false,
+		caughtError: false,
 	};
 
 	async componentDidMount() {
@@ -41,9 +38,7 @@ export default class NotesBoard extends React.Component {
 	}
 
 	componentDidCatch(err, info) {
-		console.error(err);
-		console.info(info);
-    this.setState({ catchedError: true });
+    this.setState({ caughtError: true });
 	}
 
 	// storage api calls
@@ -51,10 +46,8 @@ export default class NotesBoard extends React.Component {
 		this.setState(
 		 	prevState => ({...prevState, ...obj}),
 			() => storage.save(obj)
-		)
+		);
 	};
-
-	toggleSettings = () => this.setState({showSettings: !this.state.showSettings});
 
 	// updates noteStyle and/or boardStyle
 	updateDefaultStyles = (styleFor='noteStyle', newProp={}) => {
@@ -94,22 +87,20 @@ export default class NotesBoard extends React.Component {
 	};
 
 	render() {
+		if (this.state.caughtError) {
+			return <EmojiIcon>Ops! Something went wrong 😥</EmojiIcon>
+		}
+
 		const {
 			notes,
 			noteStyle,
 			boardStyle,
-			showSettings,
-			catchedError,
 		} = this.state;
-
-		if ( catchedError ) {
-			return <EmojiIcon>Ops! Something went wrong 😥</EmojiIcon>
-		}
 
 		const noteBoxes = notes.map( note =>
 			<Note
-				key={note.id}
 				note={note}
+				key={note.id}
 				updateFn={this.updateNote}
 				removeFn={this.removeNote}
 			/>
@@ -117,8 +108,8 @@ export default class NotesBoard extends React.Component {
 
 		return (
 			<div
-				style={{background: `${boardStyle.nightMode ? NIGHT_BG_COLOR : ''}`}}
 				className='notes-board'
+				style={{background: `${boardStyle.daylight ? '' : NIGHT_BG_COLOR}`}}
 			>
 				<ThemeContext.Provider
 					value={{
@@ -140,16 +131,16 @@ export default class NotesBoard extends React.Component {
 					</ReactCSSTransitionGroup>
 
 					<EmojiIcon
-						className='plus-sign-emoji'
-						title='New note (ctr + ⏎)'
-						aria-label='heavy plus sign'
 						onClick={this.addNewNote}
+						title='New note (ctr + ⏎)'
+						className='plus-sign-emoji'
+						aria-label='heavy plus sign'
+						data-testid='tid-add-note-btn'
 					>
 						➕
 					</EmojiIcon>
-					
-					<SettingsPanel show={showSettings} toggle={value=>this.setState({showSettings: value})}/>
 
+					<SettingsPanel />
 				</ThemeContext.Provider>
 			</div>
 		);

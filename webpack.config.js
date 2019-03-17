@@ -60,7 +60,12 @@ module.exports = (env, argv) => {
       new OpenBrowserPlugin({ url: `http://localhost:${portNo}/public` })
     ],
     resolve: {
-      extensions: ['.js', '.json', '.jsx']
+      extensions: ['.js', '.json', '.jsx'],
+      modules: [
+        resolve(__dirname, 'src/'),
+        resolve(__dirname, 'src/components/'),
+        resolve(__dirname, 'node_modules/'),
+      ],
     },
 
     stats: {

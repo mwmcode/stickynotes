@@ -20,3 +20,7 @@ export function createNote() {
     createdAt: now.toLocaleString('en-AU'),
   };
 }
+
+export function getInt(strVal='') {
+  return Number.parseInt(strVal, 10);
+}

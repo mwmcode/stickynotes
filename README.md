@@ -20,6 +20,7 @@ npm run build
 1. Open new tab ...
 
 ### To do:
+- UPDATE/REWRITE
 - UT (check out enzyme fix for 16.3, _or try out [react-testing-library](https://github.com/kentcdodds/react-testing-library)_)
 - Option to modify styles for individual notes
 - Tailwind CSS ?

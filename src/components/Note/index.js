@@ -5,14 +5,17 @@ import {
 	shape,
 	number,
 	string,
-	func,
+  func,
+  object,
 } from 'prop-types';
-import { ThemeContext } from './Board';
-import { EmojiIcon } from './reuseables';
+import { EmojiIcon } from 'reuseables';
+import { ThemeContext } from 'CONSTANTS';
+import {
+  getInt,
+} from 'helpers';
 
-import './Note.css';
+import './styles.css';
 
-const getInt = strVal => Number.parseInt(strVal, 10);
 
 export default class NoteCard extends React.Component {
   isDragging   = false;
@@ -83,7 +86,7 @@ export default class NoteCard extends React.Component {
     return (
       <ThemeContext.Consumer>
         {({ defaultNoteStyle }) =>
-          <div style={{...note.position}}>
+          <div style={{...note.position}} data-testid='ti-note-box' >
             <div
               className='note-box'
               onPointerUp={this.onUp}
@@ -109,6 +112,7 @@ export default class NoteCard extends React.Component {
                 title='remove note'
                 aria-label='waste can emoji'
                 className='waste-can-emoji'
+                data-testid='ti-remove-btn'
               >
                 🗑
               </EmojiIcon>
@@ -130,7 +134,7 @@ NoteCard.propTypes = {
 	note: shape({
 		id: number,
 		body: string,
-		style: shape({}),
+		style: object,
 		createdAt: string,
 	}),
 };
@@ -146,4 +150,4 @@ NoteCard.defaultProps = {
 };
 
 
-// from: https://codesandbox.io/s/q83r7nrwv6
+// credit: https://codesandbox.io/s/q83r7nrwv6

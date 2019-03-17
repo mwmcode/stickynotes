@@ -26,6 +26,7 @@
     "NODE_ENV": true
   },
   "rules": {
+    "semi": "warn",
     "no-const-assign": "warn",
     "no-this-before-super": "warn",
     "no-undef": "warn",
@@ -50,5 +51,12 @@
     "no-void": 0,
     "react/sort-comp": 0,
     "react/no-did-mount-set-state" : 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src/", "src/components"]
+      }
+    }
   }
 }

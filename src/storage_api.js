@@ -23,7 +23,7 @@ if (NODE_ENV === 'production') {
     try {
       chrome.storage.sync.set({ [STORAGE_KEY]: newStorage });
     } catch (e) {
-      console.error(`Error saving ${newStorage} to storage: ${e}`);
+      // console.error(`Error saving ${newStorage} to storage: ${e}`);
     }
 
     return newStorage;
@@ -36,7 +36,7 @@ if (NODE_ENV === 'production') {
         resolve(result[STORAGE_KEY]);
       });
     } catch (e) {
-      console.error(`Error loading from storage: ${e}`);
+      // console.error(`Error loading from storage: ${e}`);
       reject(e);
     }
   });
@@ -51,22 +51,23 @@ if (NODE_ENV === 'production') {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newStorage));
     } catch (e) {
-      console.error(`Error saving ${newStorage} to storage: ${e}`);
+      // console.error(`Error saving ${newStorage} to storage: ${e}`);
     }
     return newStorage;
-  }
+  };
 
   /** exposed: */
   load = () => {
     const result = JSON.parse(localStorage.getItem(STORAGE_KEY));
     return result || DEFAULT_STORAGE_STATE;
-  }
+  };
 
   save = (newStuff={}) => {
     try {
       return store({ ...load(), ...newStuff });
     } catch (e) {
-      return void console.error(`Error loading from storage: ${e}`);
+      // return void console.error(`Error loading from storage: ${e}`);
+      return {};
     }
-  }
+  };
 }

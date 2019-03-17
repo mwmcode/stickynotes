@@ -1,17 +1,19 @@
 {
   "name": "stickynotestab",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "main.js",
   "keywords": [],
   "author": "mustafa",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
+    "start": "npm run dev",
     "build": "cross-env NODE_ENV=production webpack --hide-modules --progress --mode production",
     "dev:build": "cross-env NODE_ENV=development webpack -d --mode development",
-    "dev": "webpack-dev-server --colors --inline --progress --mode development",
+    "dev": "cross-env webpack-dev-server --colors --inline --progress --mode development",
     "watch": "cross-env NODE_ENV=development webpack --watch --mode development",
     "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:update": "cross-env NODE_ENV=test jest -u",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage"
   },
@@ -33,7 +35,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
-    "enzyme": "^3.3.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -46,28 +47,15 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.4",
     "jest-localstorage-mock": "^2.2.0",
-    "jest-serializer-enzyme": "^1.0.0",
     "open-browser-webpack-plugin": "0.0.5",
     "prettier": "^1.12.1",
     "react-hot-loader": "^3.1.3",
     "react-test-renderer": "^16.4.0",
+    "react-testing-library": "^4.1.0",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "uuid": "^3.2.1",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "identity-obj-proxy"
-    },
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ],
-    "snapshotSerializers": [
-      "jest-serializer-enzyme"
-    ]
   }
 }
